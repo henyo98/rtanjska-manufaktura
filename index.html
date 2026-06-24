@@ -127,6 +127,23 @@
   footer strong { color: #666; }
   footer .legend { display: flex; gap: 16px; align-items: center; margin-top: 6px; }
 
+  .napomena-box {
+    background: #fff8e1;
+    border-left: 4px solid #e6a817;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    font-size: 12pt;
+    color: #5d4037;
+    line-height: 1.5;
+  }
+  .napomena-box strong {
+    color: #c79100;
+    font-size: 13pt;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
   /* ========== AVAILABILITY ========== */
   .avail, .avail-sm {
     display: inline-flex; align-items: center; justify-content: center;
@@ -231,7 +248,8 @@
       <tr><td class="name">Козји сир у маслиновом уљу са зачинима</td><td class="pkg">215 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
       <tr><td class="name">Ликери (трњина, шипурак, дрењина, купина, вишња)</td><td class="pkg">250 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
       <tr><td class="name">Ракије (дуња, шљива)</td><td class="pkg">250 мл</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
-      <tr><td class="name">Ртањски мед</td><td class="pkg">250 g</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Ракије (дуња, шљива)</td><td class="pkg">500 мл</td><td class="price">1100 дин.</td><td><span class="avail yes"></span></td></tr>
+	  <tr><td class="name">Ртањски мед</td><td class="pkg">250 g</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
       <tr><td class="name">Ртањски мед</td><td class="pkg">400 g</td><td class="price">900 дин.</td><td><span class="avail yes"></span></td></tr>
       <tr><td class="name">Ртањски мед</td><td class="pkg">1000 g</td><td class="price">2000 дин.</td><td><span class="avail yes"></span></td></tr>
       <tr><td class="name">Сируп од боквице и цвета багрема</td><td class="pkg">215 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
@@ -367,7 +385,9 @@
 </section>
 
 <footer>
-  <strong>Напомена:</strong> Неки производи током године нису доступни због недостатка сировина. Пре поручивања позовите ради провере доступности.
+  <div class="napomena-box">
+    <strong>⚠ Напомена:</strong> Неки производи током године нису доступни због недостатка сировина. Пре поручивања позовите ради провере доступности.
+  </div>
   <div class="legend">
     <span class="avail yes" style="margin-left:0;margin-right:4px"></span> = доступно
     <span class="avail no" style="margin-left:0;margin-right:4px"></span> = тренутно није доступно
