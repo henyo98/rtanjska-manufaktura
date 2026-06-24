@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ртањска мануфактура — Ценовник</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #2c2c2c;
+    background: #fafaf7;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    background: #fff;
+    min-height: 100vh;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #6b8e5a;
+  }
+  header .logo { height: 80px; margin-bottom: 12px; }
+  header h1 {
+    font-size: 22pt; font-weight: 600; letter-spacing: 1px; color: #1a1a1a;
+  }
+  header .subtitle {
+    font-size: 13pt; color: #5a7a4a; font-weight: 500; margin-top: 4px;
+  }
+  header .contact {
+    font-size: 11pt; color: #555; margin-top: 12px;
+    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  }
+  header .contact span { white-space: nowrap; }
+
+  /* ========== CATEGORIES ========== */
+  .category { margin-bottom: 28px; }
+  .category h2 {
+    font-size: 14pt; font-weight: 600; color: #4a6740; text-transform: uppercase;
+    letter-spacing: 0.6px; border-bottom: 1px solid #c5d5bd;
+    padding-bottom: 6px; margin-bottom: 12px;
+  }
+  .category > .desc {
+    font-size: 10pt; color: #666; font-style: italic; margin-bottom: 10px; line-height: 1.4;
+  }
+
+  .subcat { margin-bottom: 14px; }
+  .subcat h3 {
+    font-size: 13pt; font-weight: 600; color: #3d3d3d; margin-bottom: 6px;
+    padding-left: 8px; border-left: 3px solid #6b8e5a;
+  }
+  .subcat .price-hint { font-size: 11pt; color: #555; font-weight: 400; }
+
+  /* ========== TABLES ========== */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 4px; }
+  table th {
+    text-align: left; font-size: 9pt; font-weight: 600; color: #999;
+    text-transform: uppercase; letter-spacing: 0.4px; padding: 6px 0;
+    border-bottom: 0.5px solid #e0e0e0;
+  }
+  table td {
+    padding: 5px 0; border-bottom: 0.5px solid #f3f3f3; font-size: 12pt;
+  }
+  table .name { font-weight: 500; }
+  table .latin {
+    display: block; font-style: italic; font-weight: 400; font-size: 9pt;
+    color: #888; margin-top: 1px;
+  }
+  table .pkg { color: #666; font-size: 10pt; }
+  table .price { text-align: left; font-weight: 600; white-space: nowrap; }
+
+  /* ========== GRID LAYOUTS ========== */
+  .two-col, .three-col { display: grid; gap: 2px 24px; }
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .three-col { grid-template-columns: 1fr 1fr 1fr; }
+
+  .two-col .item, .three-col .item {
+    font-size: 12pt; padding: 4px 0; border-bottom: 0.5px solid #f3f3f3;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .two-col .item .latin, .three-col .item .latin {
+    display: block; font-style: italic; font-size: 9pt; color: #888; font-weight: 400;
+  }
+  .two-col .item .price, .three-col .item .price {
+    font-weight: 600; white-space: nowrap; font-size: 12pt;
+  }
+
+  .inline-list {
+    display: flex; flex-wrap: wrap; gap: 2px 16px; font-size: 11pt;
+    line-height: 1.6; padding: 4px 0;
+  }
+  .inline-list span { white-space: nowrap; }
+  .inline-list .sep { color: #ccc; font-weight: 300; }
+
+  /* ========== PREPARATION ========== */
+  .prep {
+    margin-top: 28px; padding-top: 20px; border-top: 1px solid #d5d5d5;
+  }
+  .prep h2 {
+    font-size: 14pt; font-weight: 600; color: #4a6740; text-transform: uppercase;
+    letter-spacing: 0.6px; border-bottom: 1px solid #c5d5bd;
+    padding-bottom: 6px; margin-bottom: 12px;
+  }
+  .prep .method { margin-bottom: 10px; }
+  .prep .method h3 {
+    font-size: 12pt; font-weight: 600; color: #3d3d3d; margin-bottom: 2px;
+  }
+  .prep .method p {
+    font-size: 11pt; color: #555; line-height: 1.45; margin-left: 8px;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    margin-top: 28px; padding-top: 16px; border-top: 1px solid #d5d5d5;
+    font-size: 10pt; color: #999;
+  }
+  footer strong { color: #666; }
+  footer .legend { display: flex; gap: 16px; align-items: center; margin-top: 6px; }
+
+  /* ========== AVAILABILITY ========== */
+  .avail, .avail-sm {
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%; flex-shrink: 0; vertical-align: middle;
+  }
+  .avail { width: 18px; height: 18px; margin-left: 10px; }
+  .avail.yes { background: #4a9c3f; box-shadow: 0 0 0 2px rgba(74,156,63,0.25); }
+  .avail.no {
+    border: 2px solid #d9534f; color: #d9534f; background: #fff;
+  }
+  .avail.no::after { content: '✕'; font-size: 12px; font-weight: 700; line-height: 1; }
+  .avail-sm { width: 14px; height: 14px; margin-left: 6px; top: -1px; position: relative; }
+  .avail-sm.yes { background: #4a9c3f; box-shadow: 0 0 0 1.5px rgba(74,156,63,0.2); }
+  .avail-sm.no {
+    border: 1.5px solid #d9534f; color: #d9534f; background: #fff;
+  }
+  .avail-sm.no::after { content: '✕'; font-size: 9px; font-weight: 700; line-height: 1; }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 600px) {
+    .page { padding: 20px 14px 36px; }
+    header .logo { height: 60px; }
+    header h1 { font-size: 17pt; }
+    header .subtitle { font-size: 11pt; }
+    header .contact { font-size: 10pt; gap: 10px; }
+    .three-col { grid-template-columns: 1fr 1fr; }
+    table td, .two-col .item, .three-col .item { font-size: 11pt; }
+  }
+
+  /* ========== PRINT ========== */
+  @media print {
+    body { background: #fff; }
+    .page { max-width: none; padding: 6mm 10mm; }
+    @page { size: A4; margin: 6mm; }
+    .category, .subcat, .prep { page-break-inside: avoid; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<header>
+  <img src="logo.jpg" alt="Ртањска мануфактура" class="logo">
+  <h1>РТАЊСКА МАНУФАКТУРА</h1>
+  <div class="subtitle">Самоникло лековито биље са планине Ртањ</div>
+  <div class="contact">
+    <span>📞 065 55 84 999</span>
+    <span>📞 064 55 84 999</span>
+    <span>📍 Насеље Ртањ, 19370 Бољевац</span>
+  </div>
+</header>
+
+<!-- ===== ЏЕМОВИ, СЛАТКА И СИРУПИ ===== -->
+<section class="category">
+  <h2>Џемови, слатка и сирупи</h2>
+  <p class="desc">Производи од непрсканог и дивљег воћа или биља на традиционални старински начин, без конзерванса.</p>
+
+  <div class="subcat">
+    <h3>Џемови и слатка</h3>
+    <table>
+      <thead><tr><th>Производ</th><th>Паковање</th><th>Цена</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="name">Џем од шипурка</td><td class="pkg">720 мл</td><td class="price">1500 дин.</td><td><span class="avail yes"></span></td></tr>
+        <tr><td class="name">Џем од шипурка</td><td class="pkg">320 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
+        <tr><td class="name">Џем од дуња</td><td class="pkg">320 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
+        <tr><td class="name">Џем од кајсија</td><td class="pkg">320 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
+        <tr><td class="name">Слатко од виноградарских брескви</td><td class="pkg">215 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
+        <tr><td class="name">Слатко од дуња</td><td class="pkg">215 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subcat">
+    <h3>Сирупи <span class="price-hint">— 600 дин.</span></h3>
+    <div class="inline-list">
+      <span>Шипурак <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Цвет зове <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Цвет багрема <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Нана <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Нана и коприва <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Трњина <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Дрењина <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Купина <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Вишња <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Црна дивља трешња <span class="avail-sm yes"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ОСТАЛИ ПРОИЗВОДИ ===== -->
+<section class="category">
+  <h2>Остали производи</h2>
+  <p class="desc">Маслиново уље је екстра девичанско из Грчке (Мегара) од провереног произвођача. Козји сир је квалитетан преврео сир. Ракије су препеченице врхунског квалитета. Мед је прави ртањски.</p>
+
+  <table>
+    <thead><tr><th>Производ</th><th>Паковање</th><th>Цена</th><th></th></tr></thead>
+    <tbody>
+      <tr><td class="name">Ртањски мед</td><td class="pkg">250 g</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Ртањски мед</td><td class="pkg">400 g</td><td class="price">900 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Ртањски мед</td><td class="pkg">1000 g</td><td class="price">2000 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Кантарион уље (маслиново)</td><td class="pkg">50 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Кантарион уље (сунцокретово)</td><td class="pkg">50 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Хајдучка трава у маслиновом уљу за сунчање</td><td class="pkg">100 мл</td><td class="price">1000 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Екстра девичанско маслиново уље са зачинским биљем</td><td class="pkg">250 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Козји сир у маслиновом уљу са зачинима</td><td class="pkg">215 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Траварице (са ртањским чајем, горке, са дивљом ментом)</td><td class="pkg">250 мл</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Ракије (дуња, шљива)</td><td class="pkg">250 мл</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Ликери (трњина, шипурак, дрењина, купина, вишња)</td><td class="pkg">250 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Сируп од маслачка</td><td class="pkg">320 мл</td><td class="price">700 дин.</td><td><span class="avail yes"></span></td></tr>
+      <tr><td class="name">Сируп од боквице и цвета багрема</td><td class="pkg">215 мл</td><td class="price">500 дин.</td><td><span class="avail yes"></span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== ЧАЈЕВИ ===== -->
+<section class="category">
+  <h2>Чајеви</h2>
+  <p class="desc">Чајеви су изузетног квалитета, беру се по сувом времену, детаљно чисте од другог биља и сувих гранчица и суше у промаји и мраку. Складиште се на сувом и тамном месту. 1 паковање = 20–30 шоља чаја.</p>
+
+  <div class="subcat">
+    <h3>Мешавине <span class="price-hint">— 450 дин.</span></h3>
+    <table>
+      <thead><tr><th>Производ</th><th>Опис</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="name">Антистрес коктел</td><td class="pkg">Мешавина за умирење</td><td><span class="avail yes"></span></td></tr>
+        <tr><td class="name">Чај за јачање имунитета</td><td class="pkg">Мешавина за јачање имунитета</td><td><span class="avail yes"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="subcat">
+    <h3>Појединачни чајеви <span class="price-hint">— 300 дин.</span></h3>
+    <div class="three-col">
+      <div class="item"><span><span>Ртањски чај</span><span class="latin">Satureja kitaibelii</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Верем трава</span><span class="latin">Calamintha officinalis</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Водена метвица</span><span class="latin">Mentha aquatica</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Метвица</span><span class="latin">Mentha pulegium</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Дивља мајчина душица</span><span class="latin">Thymus serpyllum</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Подубица</span><span class="latin">Teucrium chamaedrys</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Боквица</span><span class="latin">Plantago major, Plantago lanceolata</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Босиљак</span><span class="latin">Ocimum basilicum</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Вранилова трава</span><span class="latin">Origanum vulgare</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Глог</span><span class="latin">Crataegus oxyacantha</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Жути раван</span><span class="latin">Achillea clypeolata</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Цвет зове</span><span class="latin">Sambucus nigra</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Кантарион</span><span class="latin">Hypericum perforatum</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Коприва</span><span class="latin">Urtica dioica</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Матичњак</span><span class="latin">Melissa officinalis</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Пољска нана</span><span class="latin">Mentha arvensis</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Петровац</span><span class="latin">Agrimonia eupatoria</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Раставић</span><span class="latin">Equisetum arvense</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Трњина</span><span class="latin">Prunus spinosa</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Хајдучка трава</span><span class="latin">Achillea millefolium</span></span><span class="avail yes"></span></div>
+      <div class="item"><span><span>Цвет зове</span><span class="latin">Sambucus nigra</span></span><span class="avail yes"></span></div>
+    </div>
+  </div>
+
+  <div class="subcat">
+    <h3>Чајеви по 200 дин.</h3>
+    <div class="three-col">
+      <div class="item"><span><span>Шипурак</span><span class="latin">Rosa canina</span></span><span class="avail yes"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ТИНКТУРЕ ===== -->
+<section class="category">
+  <h2>Тинктуре</h2>
+  <p class="desc">Тинктуре (капи) су паковане у тамне стаклене бочице од 50 мл са капаљком. Спреј за грло је у бочицама од 30 мл. 1 бочица = приближно 20 дана примене.</p>
+
+  <div class="subcat">
+    <h3>Једнокомпонентне тинктуре <span class="price-hint">— 600 дин.</span></h3>
+    <div class="three-col">
+      <div class="item"><span>Вранилова трава</span><span class="avail yes"></span></div>
+      <div class="item"><span>Глог</span><span class="avail yes"></span></div>
+      <div class="item"><span>Жути раван</span><span class="avail yes"></span></div>
+      <div class="item"><span>Кантарион</span><span class="avail yes"></span></div>
+      <div class="item"><span>Коприва</span><span class="avail yes"></span></div>
+      <div class="item"><span>Мајчина душица</span><span class="avail yes"></span></div>
+      <div class="item"><span>Матичњак</span><span class="avail yes"></span></div>
+      <div class="item"><span>Пољска нана</span><span class="avail yes"></span></div>
+      <div class="item"><span>Раставић</span><span class="avail yes"></span></div>
+      <div class="item"><span>Ртањски чај</span><span class="avail yes"></span></div>
+      <div class="item"><span>Сремуш</span><span class="avail yes"></span></div>
+      <div class="item"><span>Хајдучка трава</span><span class="avail yes"></span></div>
+      <div class="item"><span>Петровац</span><span class="avail yes"></span></div>
+      <div class="item"><span>Подубица</span><span class="avail yes"></span></div>
+      <div class="item"><span>Камилица</span><span class="avail yes"></span></div>
+      <div class="item"><span>Верем трава</span><span class="avail yes"></span></div>
+    </div>
+  </div>
+
+  <div class="subcat">
+    <h3>Вишекомпонентне тинктуре <span class="price-hint">— 600 дин.</span></h3>
+    <div class="inline-list">
+      <span>Антистрес коктел <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Капи за јачање <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Капи за стомак <span class="avail-sm yes"></span></span>
+    </div>
+  </div>
+
+  <div class="subcat">
+    <h3>Тинктуре <span class="price-hint">— 1000 дин.</span></h3>
+    <div class="inline-list">
+      <span>Корен маслачка <span class="avail-sm yes"></span></span> <span class="sep">·</span>
+      <span>Семе коприве <span class="avail-sm yes"></span></span>
+    </div>
+  </div>
+
+  <div class="subcat">
+    <h3>Остало</h3>
+    <table>
+      <thead><tr><th>Производ</th><th>Опис</th><th>Цена</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="name">Дах 1 — Спреј за грло</td><td class="pkg">За упале грла, десни и крајника, 30 мл</td><td class="price">600 дин.</td><td><span class="avail yes"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== ПРИПРЕМА ЧАЈЕВА ===== -->
+<section class="prep">
+  <h2>Начин припреме чајева</h2>
+  <div class="method">
+    <h3>Ртањски чај</h3>
+    <p>2–3 гранчице ставити у шољу хладне воде, сачекати да проври, одмах смањити температуру и кувати око 10 минута док чај не добије лепу боју.</p>
+  </div>
+  <div class="method">
+    <h3>Шипурак</h3>
+    <p>Увече потопити 4–5 бобица у шољу хладне воде. Ујутру кувати док не добије боју.</p>
+  </div>
+  <div class="method">
+    <h3>Остали чајеви</h3>
+    <p>Прстохват или неколико гранчица ставити у шољу хладне или вреле воде и кувати неколико минута.</p>
+  </div>
+</section>
+
+<footer>
+  <strong>Напомена:</strong> Неки производи током године нису доступни због недостатка сировина. Пре поручивања позовите ради провере доступности.
+  <div class="legend">
+    <span class="avail yes" style="margin-left:0;margin-right:4px"></span> = доступно
+    <span class="avail no" style="margin-left:0;margin-right:4px"></span> = тренутно није доступно
+  </div>
+</footer>
+
+</div><!-- end .page -->
+
+</body>
+</html>
